@@ -1,0 +1,12 @@
+@theme "common"
+
+window {
+   height: 0;
+   width: 30%;
+   location: south;
+   y-offset: -10%;
+}
+
+entry {
+    placeholder: "  Clipboard History";
+}

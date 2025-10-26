@@ -1,0 +1,22 @@
+<interface>
+    <object class="GtkMenu" id="menu">
+        <child>
+            <object class="GtkMenuItem">
+                <property name="label">Battery</property>
+                <style>
+                    <class name="title"/>
+                </style>
+            </object>
+        </child>
+        <child>
+            <object class="GtkMenuItem" id="tshd-start">
+                <property name="label">Start threshold</property>
+            </object>
+        </child>
+        <child>
+            <object class="GtkMenuItem" id="tshd-stop">
+                <property name="label">Stop threshold</property>
+            </object>
+        </child>
+    </object>
+</interface>

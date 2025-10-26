@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+
+if ! command -v swaybg &>/dev/null; then
+	echo "Cannot run wallpaper, cannot find swaybg"
+	exit 1
+fi
+
+if ! command -v fd &>/dev/null && ! command -v fdfind &>/dev/null; then
+	echo "Cannot run wallpaper, cannot find fd"
+	exit 1
+fi
+
+if command -v fdfind &>/dev/null; then
+	alias fd="fdfind"
+fi
+
+WALLPAPER_ROOT=$HOME/.wallpapers
+MODE=$1
+
+get_wallpaper() {
+	local wallpaper_path=$1
+	local img=$wallpaper_path
+	local dir=$WALLPAPER_ROOT/$wallpaper_path
+
+	if [[ $wallpaper_path == "time" ]]; then
+		case $(date +%H) in
+		05 | 06 | 07 | 08 | 09 | 10)
+			dir="$WALLPAPER_ROOT/light"
+			;;
+		11 | 12 | 13 | 14 | 15 | 16)
+			dir="$WALLPAPER_ROOT/mix"
+			;;
+		17 | 18 | 19 | 20 | 21 | 22)
+			dir="$WALLPAPER_ROOT/dark"
+			;;
+		23 | 00 | 01 | 02 | 03 | 04)
+			dir="$WALLPAPER_ROOT/green"
+			;;
+		esac
+	fi
+
+	if [[ -d $dir ]]; then
+		img=$(fd . -t f "$dir" | shuf -n 1)
+	fi
+
+	echo "$img"
+}
+
+apply() {
+	local IMG=$(get_wallpaper "$1")
+
+	echo "$IMG"
+
+	mapfile -t swaybg_pids < <(pgrep -f "swaybg .*")
+
+	swaybg -i "$IMG" -m fill -o "*" &
+
+	sleep 0.5
+
+	local newest_pid=$(pgrep -n "swaybg .*")
+
+	for pid in "${swaybg_pids[@]}"; do
+		if [[ $pid != $new_pid ]]; then
+			kill -9 "$pid"
+		fi
+	done
+}
+
+daemon() {
+	local new_pid=$(pgrep -f -n ".*wallpaper.*daemon.*")
+	mapfile -t daemon_pids < <(pgrep -f ".*wallpaper.*daemon.*")
+
+	if [[ "${#daemon_pids[@]}" -gt 1 ]]; then
+		for pid in "${daemon_pids[@]}"; do
+			if [[ $pid != $new_pid ]]; then
+				kill -9 "$pid"
+			fi
+		done
+	fi
+
+	while true; do
+		apply "$1"
+		sleep 599
+	done
+}
+
+case $MODE in
+"apply") apply "$2" ;;
+"daemon") daemon "$2" ;;
+*) echo "$MODE, command not found available <apply|daemon>" ;;
+esac

@@ -1,0 +1,23 @@
+@theme "common"
+
+configuration {
+   modes: [ calc ];
+   display-calc: "";
+   show-icons: false;
+}
+
+window {
+   height: 0;
+   width: 30%;
+   location: south;
+   y-offset: -10%;
+}
+
+entry {
+   placeholder: "  Calculator";
+}
+
+mainbox {
+    children: [inputbar, message, listview];
+}
+

@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+
+mapfile -t batteries < <(upower -e | grep -i bat)
+mapfile -t line_powers < <(upower -e | grep -i line_power)
+
+waybar_indicator() {
+    if [[ ${#batteries[@]} -lt 1 ]]; then
+        exit 1
+    fi
+
+    if ! command -v upower &>/dev/null; then
+        notify-send "Waybar battery" "Upower not found"
+        exit 1
+    fi
+
+    if ! command -v jq &>/dev/null; then
+        notify-send "Waybar battery" "jq not found"
+        exit 1
+    fi
+
+    states=("plugged" "charging" "" "warning" "critical")
+    state=0
+    percentage=0
+    tooltip=""
+
+    for line_power in "${line_powers[@]}"; do
+        lp_state=$(upower -i "$line_power" | grep -i "online" | awk '{print $2}')
+
+        if [[ $lp_state == "yes" ]]; then
+            state=0
+        fi
+    done
+
+    for i in "${!batteries[@]}"; do
+        battery=${batteries[$i]}
+
+        bat_percentage=$(upower -i "$battery" | grep -i "percentage" | awk '{print $2}' | tr -d '%')
+        bat_state=$(upower -i "$battery" | grep -i "state" | awk '{print $2}' | tr -d '%')
+
+        ((percentage += $bat_percentage))
+
+        if [[ $bat_state == "charging" ]]; then
+            state=1
+        fi
+
+        if [[ $bat_state == "discharging" ]]; then
+            state=2
+        fi
+
+        bat_id=$(basename "${battery[@]}" | tr -d 'battery_')
+
+        if [[ $(($i + 1)) -eq ${#batteries[@]} ]]; then
+            tooltip+="$bat_id ~ $bat_percentage%"
+        else
+            tooltip+="$bat_id ~ $bat_percentage%\r"
+        fi
+    done
+
+    percentage=$(($percentage / ${#batteries[@]}))
+
+    if [[ $state -gt 1 ]]; then
+        if (($percentage <= 15)); then
+            state=3
+        fi
+        if (($percentage <= 5)); then
+            state=4
+        fi
+    fi
+
+    printf '{ "text": "%s", "percentage": %d, "class": "%s", "tooltip": "%s" }' \
+        "$percentage" \
+        "$percentage" \
+        "${states[$state]}" \
+        "$tooltip"
+}
+
+threshold() {
+    if ! command -v tlp &>/dev/null; then
+        local message="TLP not found"
+
+        notify-send "Battery" "$message"
+        echo "$message"
+
+        exit 0
+    fi
+
+    for i in "${!batteries[@]}"; do
+        battery=$(echo "${batteries[$i]}" | tr -d "/org/freedesktop/UPower/devices/battery_")
+
+        case $1 in
+        "start") pkexec tlp setcharge 75 80 "$battery" ;;
+        "stop") pkexec tlp fullcharge "$battery" ;;
+        esac
+    done
+}
+
+case "$1" in
+tshd) threshold "$2" ;;
+wayindicator) waybar_indicator ;;
+esac

@@ -1,0 +1,84 @@
+[global]
+font = Inter Display 14
+markup = full
+alignment = left
+format = "<b>%a</b>\n%s\n<span foreground='#585b70'>%b</span>"
+vertical_alignment = center
+show_age_threshold = false
+sort = yes
+ignore_newline = no
+stack_duplicates = true
+hide_duplicate_count = true
+show_indicators = true
+ellipsize = middle
+
+title = Dunst
+class = Dunst
+ignore_dbusclose = false
+force_xwayland = false
+force_xinerama = false
+dmenu = rofi -dmenu -p "󰂞" -config $HOME/.config/rofi/dunst.rasi
+browser = xdg-open
+always_run_script = true
+sticky_history = yes
+history_length = 20
+
+mouse_left_click = do_action, close_current
+mouse_middle_click = close_current
+mouse_right_click = close_all
+
+line_height = 0
+frame_color = "#89b4fa"
+highlight = "#89b4fa"
+separator_color= frame
+monitor = 0
+follow = keyboard
+width = 350
+height = (0, 300)
+origin = top-right
+offset = (8, 8)
+scale = 0
+notification_limit = 5
+progress_bar = true
+progress_bar_height = 10
+progress_bar_frame_width = 1
+progress_bar_min_width = 150
+progress_bar_max_width = 300
+progress_bar_corner_radius = 0
+progress_bar_corners = all
+icon_corner_radius = 0
+icon_corners = all
+indicate_hidden = yes
+transparency = 0
+separator_height = 2
+padding = 12
+horizontal_padding = 12
+text_icon_padding = 0
+frame_width = 1
+frame_color = "#313244"
+gap_size = 8
+separator_color = frame
+
+icon_theme = "Papirus-Dark"
+icon_position = left
+min_icon_size = 64
+max_icon_size = 128
+enable_recursive_icon_lookup = true
+corner_radius = 0
+corners = all
+
+[urgency_low]
+background = "#11111b"
+foreground = "#cdd6f4"
+
+[urgency_normal]
+background = "#11111b"
+foreground = "#cdd6f4"
+
+[urgency_critical]
+background = "#11111b"
+foreground = "#cdd6f4"
+frame_color = "#fab387"
+
+[experimental]
+per_monitor_dpi = false

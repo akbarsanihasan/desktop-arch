@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+pkill rofi || rofi -show emoji \
+	-emoji-format "{emoji}" \
+	-config "$HOME/.config/rofi/emoji.rasi"

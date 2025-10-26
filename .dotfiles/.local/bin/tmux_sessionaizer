@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+selected=""
+if [[ $# -eq 1 ]]; then
+	selected=$1
+fi
+
+findir=()
+if [[ "$selected" == "" ]]; then
+	findir=("$PWD")
+fi
+if [[ "$selected" == "global" ]]; then
+	findir=("$HOME" "/run/media" "/media")
+fi
+
+if [[ ${#findir[@]} -gt 0 ]]; then
+	selected=$(
+		fd . "${findir[@]}" -H -L -t d --maxdepth 6 \
+			--exclude ".git" \
+			--exclude "node_modules" \
+			--exclude "snap" \
+			--exclude "tmp" \
+			--exclude "Trash" \
+			--exclude "go/pkg" \
+			--exclude "*Local*Disk*" \
+			--exclude "*Windows*" \
+			--exclude "*RECYCLE_BIN*" \
+			2>/dev/null | fzf
+	)
+fi
+
+if [[ -z $selected ]]; then
+	exit 0
+fi
+# history_id="${history%%$'\t'*}"
+
+selected="${selected%%\/}"
+selected_name=$(echo "$selected" | tr -d ' ' | tr . _ | tr -d /)
+
+if ! tmux has-session -t="$selected_name" 2>/dev/null; then
+	tmux new-session -ds "$selected_name" -c "$selected" -n main
+fi
+
+if [[ -z $TMUX ]]; then
+	tmux attach-session -t "$selected_name"
+else
+	tmux switch-client -t "$selected_name"
+fi

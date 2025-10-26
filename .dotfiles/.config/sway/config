@@ -1,0 +1,252 @@
+set $left H
+set $right L
+set $up K
+set $down J
+set $mod Mod4
+set $term foot
+set $browser zen-browser
+set $email thunderbird
+set $wallpaper_path time
+set $bin_path $HOME/.local/bin
+
+set $term_workspace 1
+set $email_workspace 2
+set $browser_workspace 10
+
+set $rosewater #f5e0dc
+set $flamingo #f2cdcd
+set $pink #f5c2e7
+set $mauve #cba6f7
+set $red #f38ba8
+set $maroon #eba0ac
+set $peach #fab387
+set $yellow #f9e2af
+set $green #a6e3a1
+set $teal #94e2d5
+set $sky #89dceb
+set $sapphire #74c7ec
+set $blue #89b4fa
+set $lavender #b4befe
+set $text #cdd6f4
+set $subtext1 #bac2de
+set $subtext0 #a6adc8
+set $overlay2 #9399b2
+set $overlay1 #7f849c
+set $overlay0 #6c7086
+set $surface2 #585b70
+set $surface1 #45475a
+set $surface0 #313244
+set $base #1e1e2e
+set $mantle #181825
+set $crust #11111b
+
+exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK
+exec dbus-update-activation-environment --all
+exec $bin_path/xdg_desktop_portal
+
+exec brightnessctl --save
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+
+exec waybar
+exec swaync
+exec $bin_path/idle daemon
+exec $bin_path/polkit
+
+exec blueman-applet
+exec nm-applet --indicator
+exec fcitx5
+exec udiskie -t --appindicator
+
+exec $term
+exec $browser
+exec $email
+
+xwayland enable
+floating_modifier $mod
+default_border normal 2
+default_floating_border normal 2
+titlebar_border_thickness 2
+titlebar_padding 10 5
+title_align center
+smart_borders off
+floating_minimum_size 600 x 450 
+focus_follows_mouse yes
+focus_on_window_activation smart
+focus_wrapping no
+gaps inner 4
+gaps outer 0
+smart_gaps off
+mouse_warping container
+tiling_drag enabled
+workspace_auto_back_and_forth no
+
+font pango:Inter Display Medium 12
+client.focused           $surface0     $surface0 $text  $surface0 $surface0
+client.focused_inactive  $surface0     $surface0 $text  $surface0 $surface0
+client.unfocused         $crust        $crust    $text  $crust    $crust
+client.urgent            $red          $red      $text  $red      $red
+
+output "*" bg ~/wallpaper.png fill
+output Virtual-1 res 1440x900
+
+input "type:keyboard" {
+    xkb_layout us
+    xkb_variant ,
+    xkb_options ctrl:menu_rctrl
+}
+
+input "type:pointer" {
+    drag enabled
+    dwt enabled
+    drag_lock enabled
+    natural_scroll enabled
+    scroll_factor 0.40
+    pointer_accel 0.15
+    accel_profile flat
+}
+
+input "type:touchpad" {
+    tap enabled
+    drag enabled
+    dwt enabled
+    drag_lock enabled
+    natural_scroll enabled
+    scroll_factor 0.20
+    scroll_method two_finger
+    accel_profile flat
+    pointer_accel 0.15
+}
+
+bindsym --to-code --inhibited {
+    $mod+E layout toggle split tabbed
+    $mod+SHIFT+E fullscreen
+    $mod+T floating toggle
+    $mod+M focus mode_toggle
+    $mod+ALT+Q kill
+    $mod+ALT+R exec pkill gammastep || gammastep -P -O 5000
+    $mod+SHIFT+R reload
+
+    $mod+$left focus left
+    $mod+$right focus right
+    $mod+$up focus up
+    $mod+$down focus down
+
+    $mod+ALT+$left move left
+    $mod+ALT+$right move right
+    $mod+ALT+$up move up
+    $mod+ALT+$down move down
+
+    $mod+SHIFT+$left resize shrink width 10px
+    $mod+SHIFT+$right resize grow width 10px
+    $mod+SHIFT+$down resize grow height 10px
+    $mod+SHIFT+$up resize shrink height 10px
+
+    $mod+Return exec swaymsg workspace $term_workspace && $term
+    $mod+B exec swaymsg workspace $browser_workspace && $browser
+    $mod+I exec $bin_path/idle toggle
+    $mod+P exec flameshot gui
+    $mod+SHIFT+P exec flameshot screen
+    $mod+SHIFT+B exec pkill waybar || exec waybar
+
+    $mod+Space exec $bin_path/rofi_launcher
+    $mod+Slash exec $bin_path/rofi_calc
+    $mod+SHIFT+Slash exec $bin_path/rofi_emoji
+    $mod+Period exec $bin_path/rofi_cliphist
+    $mod+SHIFT+Period exec $bin_path/rofi_notification_log
+}
+bindsym $mod+SHIFT+Delete exec $bin_path/lock
+bindsym $mod+SHIFT+Escape exec \
+    [[ "$(swaymsg -r -t get_inputs | jq -r '.[] | select(.type=="touchpad") | .libinput.send_events')" == "enabled" ]] && \
+    swaymsg input "type:touchpad" events disabled || \
+    swaymsg input "type:touchpad" events enabled
+bindsym $mod+ALT+Escape exec \
+    [[ "$(swaymsg -r -t get_inputs | jq -r '.[] | select(.type=="touch") | .libinput.send_events')" == "enabled" ]] && \
+    swaymsg input "type:touch" events disabled || \
+    swaymsg input "type:touch" events enabled
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+bindsym $mod+ALT+1 move workspace 1, workspace 1 
+bindsym $mod+ALT+2 move workspace 2, workspace 2 
+bindsym $mod+ALT+3 move workspace 3, workspace 3 
+bindsym $mod+ALT+4 move workspace 4, workspace 4 
+bindsym $mod+ALT+5 move workspace 5, workspace 5 
+bindsym $mod+ALT+6 move workspace 6, workspace 6 
+bindsym $mod+ALT+7 move workspace 7, workspace 7 
+bindsym $mod+ALT+8 move workspace 8, workspace 8 
+bindsym $mod+ALT+9 move workspace 9, workspace 9 
+bindsym $mod+ALT+0 move workspace 10, workspace 10
+bindsym --to-code $mod+G workspace back_and_forth
+bindgesture swipe:4:left workspace next
+bindgesture swipe:4:right workspace prev
+
+bindsym XF86MonBrightnessUp exec brightnessctl -s set +5% -n 1% 
+bindsym XF86MonBrightnessDown exec brightnessctl -s set 5%- -n 1%
+bindsym SHIFT+XF86MonBrightnessUp exec brightnessctl -s set +1% -n 1%
+bindsym SHIFT+XF86MonBrightnessDown exec brightnessctl -s set 1%- -n 1%
+
+bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%-
+bindsym SHIFT+XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_SINK@ 1%+
+bindsym SHIFT+XF86AudioLowerVolume exec wpctl set-volume -l 1.5 @DEFAULT_SINK@ 1%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_SOURCE@ toggle
+
+for_window [window_type="dialog"] floating enable
+for_window [window_type="utility"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+for_window [title="Open File"] floating enable
+for_window [title="Save File"] floating enable
+for_window [title="File Upload"] floating enable
+for_window [title="Authentication Required"] floating enable
+
+for_window [app_id="gnome-keyring-prompt"] floating enable
+for_window [app_id="polkit"] floating enable
+for_window [app_id="pinentry-gtk-2"] floating enable
+for_window [app_id="gnome-keyring-ask"] floating enable
+for_window [app_id="nwg-look"] floating enable
+
+for_window [class="steam" title="Friends List"] floating enable
+
+for_window [app_id="foot"] move container workspace $term_workspace
+for_window [app_id="zen"] move container workspace $browser_workspace
+for_window [app_id="firefox"] move container workspace $browser_workspace
+for_window [app_id="chromium"] move container workspace $browser_workspace
+for_window [app_id="thunderbird"] move container workspace $email_workspace
+for_window [app_id="thunar" title=".*File Operation Progress.*"] floating enable
+for_window [app_id="thunar" title="Rename.*"] floating enable
+
+for_window [app_id="pavucontrol"] {
+    floating enable
+    resize set 800px 600px
+}
+for_window [app_id="blueman-manager"] {
+    floating enable
+    resize set 800px 600px
+}
+for_window [app_id="nm-connection-editor"] {
+    floating enable
+    resize set 800px 600px
+}
+for_window [app_id="ristretto"] {
+    floating enable
+    resize set 800px 600px
+}
+for_window [app_id="flameshot"] {
+    border pixel 0
+    floating enable
+    fullscreen disable
+    move absolute position 0 0
+}

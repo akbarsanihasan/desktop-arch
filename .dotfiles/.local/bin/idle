@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+daemon() {
+	swayidle -w \
+		timeout 300 'brightnessctl set 5%' \
+		resume "brightnessctl -r" \
+		timeout 450 "$HOME/.local/bin/lock &" \
+		timeout 900 "swaymsg 'output * dpms off'" \
+		resume "swaymsg 'output * dpms on'" \
+		before-sleep "$HOME/.local/bin/lock"
+}
+
+icon() {
+	if pgrep -x swayidle &>/dev/null; then
+		echo ""
+		return 0
+	fi
+
+	echo ""
+}
+
+toggle() {
+	pkill swayidle || daemon &
+}
+
+case ""$1 in
+daemon) daemon ;;
+toggle) toggle && pkill -SIGRTMIN+9 waybar ;;
+icon) icon ;;
+esac

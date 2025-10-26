@@ -1,0 +1,13 @@
+@theme "common"
+
+configuration {
+    markup: true;
+    matching: "normal";
+    icon-theme: "Papirus-Dark";
+    display-drun: "";
+    show-icons: true;
+}
+
+listview {
+    dynamic: true;
+}

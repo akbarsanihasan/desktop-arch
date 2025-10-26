@@ -1,0 +1,33 @@
+@theme 'common'
+
+configuration {
+    modes: [ emoji ];
+    matching: "glob";
+    display-emoji: "😀";
+    kb-secondary-copy: "";
+    kb-custom-1: "Ctrl+c";
+}
+             
+
+window {
+    height: 0;
+    width: 30%;
+    location: south;
+    y-offset: -10%;
+}
+
+entry {
+    placeholder: "  Emoji";
+}
+
+listview {
+    lines: 5;
+    columns: 5;
+    fixed-columns: true;
+}
+
+element-text {
+    font: "Inter Display 18";
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+}

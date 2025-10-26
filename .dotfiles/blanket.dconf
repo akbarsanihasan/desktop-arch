@@ -1,0 +1,47 @@
+[/]
+active-preset='6635ec10-b3b8-48da-9c81-db7d1147b5c2'
+background-playback=true
+inhibit-suspension=false
+playing=false
+presets=['e52f7134-cff9-463b-9f7d-3740d2cc1d57', '0dd9054f-657d-40bc-8e51-4a6d38045f62', 'eab7337d-3ee6-4188-9a6f-92ca8632430b', '9f0aae3c-46d7-48c2-8af0-9732fb5967dd', '5fe0a07d-09ab-4ed5-9509-7fe54af2e086', '35e7228b-f549-487f-88ee-933a20a38a24', 'b44e3fad-2353-4bfc-ba3d-eb32777c63ce', '6635ec10-b3b8-48da-9c81-db7d1147b5c2', 'f115cda8-35ea-40c0-b570-1fefcbbd8938']
+volume=1.0
+
+[0dd9054f-657d-40bc-8e51-4a6d38045f62]
+sounds-mute={'rain': true, 'stream': true, 'summer-night': true, 'waves': true, 'wind': false, 'storm': false, 'train': true, 'boat': true, 'city': true, 'coffee-shop': true, 'fireplace': true, 'birds': true, 'pink-noise': true, 'white-noise': true}
+sounds-volume={'rain': 0.5, 'stream': 0.34000000000000002, 'summer-night': 0.5, 'waves': 0.5, 'wind': 0.5, 'storm': 0.5, 'train': 0.5, 'boat': 0.5, 'city': 0.5, 'coffee-shop': 0.5, 'fireplace': 0.82999999999999996, 'pink-noise': 0.5, 'white-noise': 0.5}
+visible-name='Mendung'
+
+[35e7228b-f549-487f-88ee-933a20a38a24]
+sounds-mute={'rain': true, 'stream': true, 'summer-night': false, 'waves': false, 'wind': true, 'storm': true, 'train': true, 'boat': true, 'city': true, 'coffee-shop': true, 'fireplace': true, 'birds': true, 'pink-noise': true, 'white-noise': true}
+sounds-volume={'rain': 0.5, 'stream': 0.34000000000000002, 'summer-night': 0.5, 'waves': 0.5, 'wind': 0.5, 'storm': 0.5, 'train': 0.5, 'boat': 0.5, 'city': 0.5, 'coffee-shop': 0.5, 'fireplace': 1.0, 'pink-noise': 0.5, 'white-noise': 0.5}
+visible-name='Night beach'
+
+[5fe0a07d-09ab-4ed5-9509-7fe54af2e086]
+sounds-mute={'rain': true, 'stream': true, 'summer-night': false, 'waves': true, 'wind': true, 'storm': true, 'train': true, 'boat': true, 'city': true, 'coffee-shop': true, 'fireplace': false, 'birds': true, 'pink-noise': true, 'white-noise': true}
+sounds-volume={'rain': 0.5, 'stream': 0.34000000000000002, 'summer-night': 0.5, 'waves': 0.5, 'wind': 0.5, 'storm': 0.5, 'train': 0.5, 'boat': 0.5, 'city': 0.5, 'coffee-shop': 0.5, 'fireplace': 1.0, 'pink-noise': 0.5, 'white-noise': 0.5}
+visible-name='Summer camp'
+
+[6635ec10-b3b8-48da-9c81-db7d1147b5c2]
+visible-name='Small river in the forrest'
+
+[9f0aae3c-46d7-48c2-8af0-9732fb5967dd]
+sounds-mute={'rain': false, 'stream': true, 'summer-night': true, 'waves': true, 'wind': true, 'storm': true, 'train': false, 'boat': true, 'city': true, 'coffee-shop': true, 'fireplace': true, 'birds': true, 'pink-noise': true, 'white-noise': true}
+sounds-volume={'rain': 0.5, 'stream': 0.34000000000000002, 'summer-night': 0.5, 'waves': 0.5, 'wind': 0.5, 'storm': 0.5, 'train': 0.5, 'boat': 0.5, 'city': 0.5, 'coffee-shop': 0.5, 'fireplace': 0.82999999999999996, 'pink-noise': 0.5, 'white-noise': 0.5}
+visible-name='Rainy journey'
+
+[b44e3fad-2353-4bfc-ba3d-eb32777c63ce]
+sounds-mute={'rain': true, 'stream': false, 'summer-night': true, 'waves': true, 'wind': true, 'storm': true, 'train': true, 'boat': true, 'city': true, 'coffee-shop': false, 'fireplace': true, 'birds': true, 'pink-noise': true, 'white-noise': true}
+sounds-volume={'rain': 0.5, 'stream': 0.34000000000000002, 'summer-night': 0.5, 'waves': 0.5, 'wind': 0.5, 'storm': 0.5, 'train': 0.5, 'boat': 0.5, 'city': 0.5, 'coffee-shop': 0.5, 'fireplace': 1.0, 'pink-noise': 0.5, 'white-noise': 0.5}
+visible-name='Cofee by the stream'
+
+[e52f7134-cff9-463b-9f7d-3740d2cc1d57]
+sounds-mute={'rain': true, 'stream': false, 'summer-night': true, 'waves': true, 'wind': true, 'storm': true, 'train': true, 'boat': true, 'city': true, 'coffee-shop': false, 'fireplace': true, 'birds': true, 'pink-noise': true, 'white-noise': true}
+sounds-volume={'rain': 0.5, 'stream': 0.34000000000000002, 'summer-night': 0.5, 'waves': 0.5, 'wind': 0.5, 'storm': 0.5, 'train': 0.5, 'boat': 0.5, 'city': 0.5, 'coffee-shop': 0.5, 'fireplace': 1.0, 'pink-noise': 0.5, 'white-noise': 0.5}
+
+[eab7337d-3ee6-4188-9a6f-92ca8632430b]
+sounds-mute={'rain': true, 'stream': false, 'summer-night': true, 'waves': true, 'wind': true, 'storm': true, 'train': true, 'boat': true, 'city': true, 'coffee-shop': true, 'fireplace': false, 'birds': true, 'pink-noise': true, 'white-noise': true}
+sounds-volume={'rain': 0.5, 'stream': 0.34000000000000002, 'summer-night': 0.5, 'waves': 0.5, 'wind': 0.5, 'storm': 0.5, 'train': 0.5, 'boat': 0.5, 'city': 0.5, 'coffee-shop': 0.5, 'fireplace': 0.82999999999999996, 'pink-noise': 0.5, 'white-noise': 0.5}
+visible-name='River camp'
+
+[f115cda8-35ea-40c0-b570-1fefcbbd8938]
+visible-name='Waterfront wave'

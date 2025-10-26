@@ -1,0 +1,118 @@
+@import "./color.css";
+
+* {
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  animation: unset;
+  transition: unset;
+  color: @lavender;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family:
+    Inter Display,
+    JetBrainsMono NFP,
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+window#waybar {
+  background: transparent;
+}
+
+window#waybar > box {
+  background-color: @crust;
+  border-bottom: 0.08rem solid @surface0;
+}
+
+#workspaces {
+  margin-right: 0.35rem;
+  background-color: @lavender;
+}
+
+#workspaces button label {
+  color: @crust;
+}
+
+#window label {
+  font-weight: 800;
+}
+
+#cpu,
+#disk,
+#temperature,
+#memory,
+#network.downspeed,
+#network.upspeed {
+  padding: 0 0.4rem;
+}
+
+menu {
+  background-color: @crust;
+}
+
+menuitem {
+  padding: 0.3rem;
+  background-color: @crust;
+}
+
+menuitem.title label {
+  font-weight: bold;
+}
+
+menuitem:hover:not(.title) {
+  background-color: @base;
+}
+
+#tray image,
+#keyboard-state label.locked,
+#custom-swayidle,
+#audio,
+#bluetooth,
+#network,
+#clock {
+  padding: 0 0.35rem;
+}
+
+#pulseaudio.muted,
+#network.disconnected,
+#network.disabled,
+#bluetooth.no-controller,
+#bluetooth.off,
+#bluetooth.disabled {
+  opacity: 0.4;
+}
+
+#custom-battery {
+  padding-left: 0.35rem;
+}
+
+#custom-battery.warning {
+  color: @yellow;
+}
+
+#custom-battery.critical {
+  color: @red;
+}
+
+#custom-battery.plugged {
+  opacity: 0.6;
+}
+
+@keyframes charging {
+  from {
+    opacity: 0.4;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+#custom-battery.charging {
+  animation: 1.5s linear charging infinite alternate;
+}

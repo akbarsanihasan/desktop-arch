@@ -1,0 +1,9 @@
+*.log
+
+/.config/btop/themes
+/.config/tmux/theme
+/.config/mpv/watch_later
+/.config/fcitx5/conf/cached_layouts
+
+/.wallpapers
+

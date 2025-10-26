@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+history=$(dunstctl history | jq -r '
+.data[][] |
+    [
+        (.id.data | tostring),
+        ("<b>" + .appname.data + "</b>"),
+        .summary.data,
+        .body.data
+    ] | join("\t")
+')
+history_pick=$(
+    pkill rofi || echo -e "$history" | rofi \
+        -dmenu \
+        -markup-rows \
+        -p "" \
+        -config "$HOME/.config/rofi/dunst.rasi"
+)
+
+history_id="${history_pick%%$'\t'*}"
+if [[ -n "$history_id" ]]; then
+    dunstctl history-pop "$history_id"
+fi

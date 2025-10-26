@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+sleep 1
+pkill -e -f xdg-desktop-portal-wlr
+pkill -f xdg-desktop-portal
+pkill -f xdg-desktop-portal-gtk
+pkill -f xdg-desktop-portal-kde
+
+/usr/lib/xdg-desktop-portal-wlr &
+/usr/lib/xdg-desktop-portal-gtk &
+/usr/lib/xdg-desktop-portal-kde &
+/usr/lib/xdg-desktop-portal &
