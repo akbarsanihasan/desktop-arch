@@ -22,7 +22,6 @@ timestamp_sudo &
 timestamp_sudo_pid=$!
 trap "sudo -k; kill -9 $timestamp_sudo_pid 2>/dev/null;" EXIT SIGINT SIGTERM
 
-source ./desktop/bluetooth.sh
 source ./desktop/pipewire.sh
 source ./desktop/filesystem.sh
 source ./desktop/firewall.sh
