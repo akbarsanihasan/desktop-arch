@@ -1,6 +1,6 @@
 {
   "layer": "bottom",
-  "position": "top",
+  "position": "bottom",
   "reload_style_on_change": true,
   "modules-left": [
     "sway/workspaces",
@@ -8,8 +8,8 @@
     "memory",
     "disk",
     "temperature",
-    "network#downspeed",
     "network#upspeed",
+    "network#downspeed",
   ],
   "modules-center": [],
   "modules-right": [
@@ -24,7 +24,19 @@
     "all-outputs": true,
     "current-only": true,
     "sort-by-number": true,
-    "format": "{index}",
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10",
+    },
   },
   "network#upspeed": {
     "interval": 10,
@@ -67,7 +79,7 @@
     "numlock": false,
     "capslock": true,
     "format": {
-      "capslock": "<span><big>{icon}</big></span>",
+      "capslock": "<span>{icon}</span>",
     },
     "format-icons": {
       "locked": "󰘲",
@@ -75,44 +87,10 @@
     },
   },
   "custom/swayidle": {
-    "format": "<big>{}</big>",
+    "format": "<span>{}</span>",
     "exec": "~/.local/bin/idle icon",
     "exec-if": "bash -c 'which swayidle &>/dev/null'",
     "signal": 9,
-  },
-  "network": {
-    "format": "<span><big>{icon}</big></span>",
-    "format-disabled": "<span><big></big></span>",
-    "format-icons": {
-      "disconnected": "",
-      "ethernet": "󰈀",
-      "wifi": ["󰤟", "󰤢", "󰤥", "󰤨"],
-    },
-    "tooltip-format": "{ifname} via {gwaddr} {icon}",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%) {icon}",
-    "tooltip-format-ethernet": "{ifname} {icon}",
-    "tooltip-format-disconnected": "Disconnected",
-    "max-length": 50,
-    "menu": "on-click",
-    "menu-file": "~/.config/waybar/network-menu.xml",
-    "menu-actions": {
-      "settings": "nm-connection-editor",
-      "enable": "nmcli radio wifi on",
-      "disable": "nmcli radio wifi off",
-    },
-  },
-  "bluetooth": {
-    "format": "<span><big>󰂯</big></span>",
-    "format-connected": "<span><big>󰂱</big></span>",
-    "format-no-controller": "<span><big>󰂯</big></span>",
-    "tooltip-format": "{device_alias} {device_battery_percentage}%",
-    "menu": "on-click",
-    "menu-file": "~/.config/waybar/bluetooth-menu.xml",
-    "menu-actions": {
-      "settings": "blueman-manager",
-      "enable": "bluetoothctl power on",
-      "disable": "bluetoothctl power off",
-    },
   },
   "pulseaudio": {
     "format": "{volume}% ",
@@ -168,7 +146,7 @@
         "months": "<span color='#b4befe'><b>{}</b></span>",
         "days": "<span color='#7f849c'><b>{}</b></span>",
         "weekdays": "<span color='#b4befe'><b>{}</b></span>",
-        "today": "<span color='#b4befe'><b><i>{}</i></b></span>",
+        "today": "<span color='#b4befe'><b><i><big>{}</big></i></b></span>",
       },
     },
     "actions": {

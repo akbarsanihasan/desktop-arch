@@ -26,16 +26,20 @@ window#waybar {
 
 window#waybar > box {
   background-color: @crust;
-  border-bottom: 0.08rem solid @surface0;
+  border-top: 0.1rem solid @surface0;
 }
 
 #workspaces {
-  margin-right: 0.35rem;
-  background-color: @lavender;
+  margin-right: 0.4rem;
+}
+
+#workspaces button {
+  background: @lavender;
 }
 
 #workspaces button label {
   color: @crust;
+  min-width: 0;
 }
 
 #window label {
@@ -48,7 +52,7 @@ window#waybar > box {
 #memory,
 #network.downspeed,
 #network.upspeed {
-  padding: 0 0.4rem;
+  padding: 0 0.35rem;
 }
 
 menu {
@@ -88,7 +92,7 @@ menuitem:hover:not(.title) {
 }
 
 #custom-battery {
-  padding-left: 0.35rem;
+  padding-left: 0.3rem;
 }
 
 #custom-battery.warning {

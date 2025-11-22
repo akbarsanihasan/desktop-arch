@@ -42,3 +42,6 @@ source ./dev/rust.sh
 source ./dev/neovim.sh
 source ./dev/git.sh
 source ./dev/docker.sh
+
+clear
+echo "Done"
