@@ -55,7 +55,7 @@ sudo pacman -S --noconfirm --needed "${core[@]}" \
 sudo chsh -s "$(command -v zsh)" "$USER"
 sudo usermod $USER -aG input
 
-mkdir $HOME/.config/qalculate/
+mkdir -p $HOME/.config/qalculate
 
 dconf write /org/gnome/desktop/wm/preferences/button-layout "':'"
 
