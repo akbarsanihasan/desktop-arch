@@ -2,9 +2,7 @@
 
 clear
 
-sudo pacman -S --noconfirm --needed udiskie \
-	libappindicator-gtk2 \
-	libappindicator-gtk3
+sudo pacman -S --noconfirm --needed udiskie libappindicator
 
 sudo mkdir -p /etc/tmpfiles.d/
 echo -e "D /media 0755 root root 0 -" | sudo tee /etc/tmpfiles.d/media.conf
