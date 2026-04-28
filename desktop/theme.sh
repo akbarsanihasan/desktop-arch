@@ -12,27 +12,27 @@ sudo pacman -S --noconfirm "${fonts[@]}" "${theme[@]}"
 fc-cache -vf
 
 REPOS=(
-    akbarsanihasan/Colloid-gtk-theme
-    catppuccin/Kvantum
-    PapirusDevelopmentTeam/papirus-icon-theme
+	akbarsanihasan/Colloid-gtk-theme
+	catppuccin/Kvantum
+	PapirusDevelopmentTeam/papirus-icon-theme
 )
 VERSIONS=(main main 20250201)
 DOWNLOAD_PATH=(gtk-theme qt-theme icon-pack)
 
 for i in "${!REPOS[@]}"; do
-    if ! [[ -d /tmp/"${DOWNLOAD_PATH[$i]}" ]]; then
-        git clone --depth 1 -b "${VERSIONS[$i]}" https://github.com/"${REPOS[$i]}" /tmp/"${DOWNLOAD_PATH[$i]}"
-    fi
+	if ! [[ -d /tmp/"${DOWNLOAD_PATH[$i]}" ]]; then
+		git clone --depth 1 -b "${VERSIONS[$i]}" https://github.com/"${REPOS[$i]}" /tmp/"${DOWNLOAD_PATH[$i]}"
+	fi
 done
 
 mkdir -p "$HOME"/.local/share/themes
 cd /tmp/gtk-theme
 ./install.sh --dest "$HOME"/.local/share/themes \
-    --theme default \
-    --color dark \
-    --size compact \
-    --libadwaita system \
-    --tweaks catppuccin black sharp
+	--theme default \
+	--color dark \
+	--size compact \
+	--libadwaita system \
+	--tweaks catppuccin black sharp
 
 mkdir -p "$HOME"/.config/Kvantum
 cp -R /tmp/qt-theme/themes/catppuccin-mocha-blue "$HOME"/.config/Kvantum

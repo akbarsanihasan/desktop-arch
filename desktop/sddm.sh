@@ -3,16 +3,16 @@
 clear
 
 sudo pacman -S --noconfirm --needed sddm \
-    unzip \
-    qt6-svg \
-    qt6-declarative \
-    qt5-quickcontrols2
+	unzip \
+	qt6-svg \
+	qt6-declarative \
+	qt5-quickcontrols2
 
 VERSION=v1.1.0
 THEME_FLAVOUR=catppuccin-mocha
 URL=https://github.com/catppuccin/sddm/releases/download/"$VERSION/$THEME_FLAVOUR".zip
 if ! [[ -d /tmp/sddm-theme ]]; then
-    curl -Lo /tmp/sddm-theme.zip "$URL"
+	curl -Lo /tmp/sddm-theme.zip "$URL"
 fi
 
 sudo rm -rf /usr/share/sddm/themes/"$THEME_FLAVOUR"

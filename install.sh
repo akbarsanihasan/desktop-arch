@@ -34,14 +34,5 @@ source ./desktop/nerdfonts.sh
 source ./desktop/theme.sh
 source ./desktop/sddm.sh
 
-source ./dev/nodejs.sh
-source ./dev/golang.sh
-source ./dev/php.sh
-source ./dev/clang.sh
-source ./dev/rust.sh
-source ./dev/neovim.sh
-source ./dev/git.sh
-source ./dev/docker.sh
-
 clear
 echo "Done"

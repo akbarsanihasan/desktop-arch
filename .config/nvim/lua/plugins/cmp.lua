@@ -13,6 +13,7 @@ return {
         local luasnip = require("luasnip")
 
         cmp.setup({
+            ---@diagnostic disable-next-line: undefined-field
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },

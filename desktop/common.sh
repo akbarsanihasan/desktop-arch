@@ -12,7 +12,6 @@ apps=(
 	foot
 	firefox
 	chromium
-	thunderbird
 	mpv
 	flameshot
 	blanket
@@ -48,4 +47,4 @@ utilities=(
 
 sudo pacman -S --noconfirm --needed "${core[@]}" "${apps[@]}" "${dependencies[@]}" "${utilities[@]}"
 xdg-settings set default-web-browser firefox.desktop
-dconf load /com/rafaelmardojai/Blanket/ <./.dotfiles/blanket.dconf
+dconf load /com/rafaelmardojai/Blanket/ <./blanket.dconf
